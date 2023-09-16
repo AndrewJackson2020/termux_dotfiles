@@ -2,14 +2,14 @@
 
 unstow_config_files () {
     echo "unstowing home config files"
-    stow -d ./ -t ~/ -D . --verbose
+    stow -d ./home -t ~/ -D . --verbose
     echo "home config files unstowed"
 }
 
 
 stow_config_files () {
     echo "stowing home config files"
-    stow -d ./ -t ~/ . --verbose
+    stow -d ./home -t ~/ . --verbose
     echo "home config files stowed"
 }
 
