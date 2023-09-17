@@ -30,3 +30,4 @@ cli () {
 			;;
 	esac	
 }
+PATH=$PATH:~/.config/emacs/bin
