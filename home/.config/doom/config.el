@@ -41,15 +41,18 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/repos/org/")
-(setq org-capture-templates
-      '(("g" "grocery" plain (file+datetree "~/repos/org/shopping_lists.org")
-         (file "~/repos/org/templates/shopping_list.org"))
-       ("w" "work" entry (file+datetree "~/repos/org/work.org")
-          "* %?\nEntered on %U\n  %i")
-       ("j" "journal" entry (file+datetree "~/repos/org/journal.org")
-          "* %?\nEntered on %U\n  %i")
-       ("m" "meetings" entry (file+datetree "~/repos/org/meetings.org")
-         (file "~/repos/org/templates/meeting.org"))))
+(after! org
+  (setq org-capture-templates
+        '(("g" "grocery" plain (file+datetree "~/repos/org/shopping_lists.org")
+           (file "~/repos/org/templates/shopping_list.org"))
+          ("w" "work" entry (file+datetree "~/repos/org/work.org")
+           "* %?\nEntered on %U\n  %i")
+          ("j" "journal" entry (file+datetree "~/repos/org/journal.org")
+           "* %?\nEntered on %U\n  %i")
+          ("m" "meetings" entry (file+datetree "~/repos/org/meetings.org")
+           (file "~/repos/org/templates/meeting.org"))))
+
+)
 
 (add-hook 'org-mode-hook '(lambda () (setq fill-column 80)))
 (add-hook 'org-mode-hook 'auto-fill-mode)
