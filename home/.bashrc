@@ -3,17 +3,11 @@
 main_help () {
 	cat << EOF
 Available Commands:
-	sync_obsidian	
+    download_encrypted_cloud_files
 EOF
 }
 
 
-update_obsidian () {
-	obsidian_folder=/data/data/com.termux/files/home/storage/shared/Documents/Main
-	cd $obsidian_folder
-	git pull && git add -A && git commit -a -m "android vault backup: `date +'%Y-%m-%d %H-%M-%S'`" && git push
-	cd -
-}
 
 
 cli () {
@@ -21,9 +15,14 @@ cli () {
 		"--help" | "-h")
 			main_help
 			;;
-		"sync_obsidian")
-			update_obsidian 
-			;;
+        "download_encrypted_cloud_files" )
+            rm -f ~/cloud_documents/staging/*
+            rm -f ~/cloud_documents/unzipped/*
+            gsutil cp gs://documents_asdfoaucds/Documents.7z ~/cloud_documents/staging/
+            cd ~/cloud_documents
+            7z x  -ounzipped/ ~/cloud_documents/staging/Documents.7z
+            cd -
+            ;;
 		*)
 			echo "Command '$1' not recognized"
 			main_help
