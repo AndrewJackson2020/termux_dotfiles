@@ -16,11 +16,15 @@ cli () {
 			main_help
 			;;
         "download_encrypted_cloud_files" )
-            rm -f ~/cloud_documents/staging/*
-            rm -f ~/cloud_documents/unzipped/*
-            gsutil cp gs://documents_asdfoaucds/Documents.7z ~/cloud_documents/staging/
-            cd ~/cloud_documents
-            7z x  -ounzipped/ ~/cloud_documents/staging/Documents.7z
+	    local_folder=~/home/storage/downloads/cloud_documents
+
+            mkdir --parents "${local_folder}/staging"
+            mkdir --parents "${local_folder}/unzipped"
+            rm -f "${local_folder}/staging/*"
+            rm -f "${local_folder}/unzipped/*"
+            gsutil cp gs://documents_asdfoaucds/Documents.7z "${local_folder}/staging/"
+            cd $local_folder
+            7z x  -ounzipped/ "${local_folder}/staging/Documents.7z"
             cd -
             ;;
 		*)
