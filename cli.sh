@@ -22,7 +22,10 @@ install_dependencies (){
             emacs \
             gh \
             git \
-            python
+            python \
+            openssh \
+            curl \
+            wget
 
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
     ~/.config/emacs/bin/doom install
