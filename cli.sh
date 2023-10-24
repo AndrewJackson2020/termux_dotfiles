@@ -14,11 +14,22 @@ stow_config_files () {
 }
 
 
+install_dependencies (){
+    pkg install stow
+    pkg install vim
+    pkg install emacs
+    pkg install gh
+    pkg install git
+    pkg install python
+}
+
+
 main_help () {
 	cat << EOF
 Available Commands:
 	stow
 	unstow
+    install_dependwncies
 EOF
 }
 
@@ -34,6 +45,10 @@ main_commands () {
 		"stow")
 			stow_config_files
 			;;
+
+        "install_dependencies")
+            install_dependencies
+            ;;
 		*)
 			echo "Command '$1' not recognized"
 			main_help
