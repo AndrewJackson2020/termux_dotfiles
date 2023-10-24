@@ -1,3 +1,4 @@
+#!/bin/bash
 
 
 unstow_config_files () {
@@ -15,12 +16,21 @@ stow_config_files () {
 
 
 install_dependencies (){
-    pkg install stow
-    pkg install vim
-    pkg install emacs
-    pkg install gh
-    pkg install git
-    pkg install python
+    pkg install \
+            stow \
+            vim \
+            emacs \
+            gh \
+            git \
+            python
+
+    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+    ~/.config/emacs/bin/doom install
+
+    curl -o sdk.sh sdk.cloud.google.com
+    chmod +x sdk.sh
+    ./sdk.sh --install-dir=$PREFIX
+
 }
 
 
