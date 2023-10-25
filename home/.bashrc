@@ -16,7 +16,7 @@ cli () {
 			main_help
 			;;
         "download_encrypted_cloud_files" )
-	    local_folder=~/home/storage/downloads/cloud_documents
+	    local_folder=~/storage/downloads/cloud_documents
 
             mkdir --parents "${local_folder}/staging"
             mkdir --parents "${local_folder}/unzipped"
