@@ -1,3 +1,4 @@
+#!/bin/bash
 
 
 unstow_config_files () {
@@ -14,11 +15,34 @@ stow_config_files () {
 }
 
 
+install_dependencies (){
+    pkg install \
+            stow \
+            vim \
+            emacs \
+            gh \
+            git \
+            python \
+            openssh \
+            curl \
+            wget
+
+    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+    ~/.config/emacs/bin/doom install
+
+    curl -o sdk.sh sdk.cloud.google.com
+    chmod +x sdk.sh
+    ./sdk.sh --install-dir=$PREFIX
+
+}
+
+
 main_help () {
 	cat << EOF
 Available Commands:
 	stow
 	unstow
+    install_dependwncies
 EOF
 }
 
@@ -34,6 +58,10 @@ main_commands () {
 		"stow")
 			stow_config_files
 			;;
+
+        "install_dependencies")
+            install_dependencies
+            ;;
 		*)
 			echo "Command '$1' not recognized"
 			main_help
