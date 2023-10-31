@@ -38,18 +38,18 @@ download_encrypted_cloud_files () {
 			exit
 			;;
 	esac
+	local_folder="storage/downloads/cloud_documents"
+	mkdir -p "${HOME}/${local_folder}/staging"
+	mkdir -p "${HOME}/${local_folder}/unzipped/${document_type}"
 
-	mkdir -p "~/cloud_documents/staging/"
-	mkdir -p "~/cloud_documents/unzipped/${document_type}"
-
-	rm -f "~/cloud_documents/staging/${document_type}.zip"
-	rm -f "~/cloud_documents/unzipped/${document_type}/*"
+	rm -f "${HOME}/${local_folder}/staging/${document_type}.zip"
+	rm -f "${HOME}/${local_folder}/unzipped/${document_type}/*"
 
 	gsutil cp \
 		"gs://documents_asdfoaucds/${document_type}.7z" \
-		"~/cloud_documents/staging/"
-	cd "~/cloud_documents"
-	7z x  "-ounzipped/${document_type}" "${HOME}/cloud_documents/staging/${document_type}.7z"
+		"${HOME}/${local_folder}/staging/"
+	cd "${HOME}/${local_folder}"
+	7z x  "-ounzipped/${document_type}" "${HOME}/${local_folder}/staging/${document_type}.7z"
 	cd -
 }
 
